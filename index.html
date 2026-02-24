@@ -156,7 +156,23 @@
             max-height: 80%;
             border-radius: 10px;
         }
+        .filter-buttons {
+            margin-bottom: 30px;
+        }
 
+        .filter-buttons button {
+            padding: 8px 15px;
+            margin: 5px;
+            background: gold;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .filter-buttons button:hover {
+            background: white;
+        }
     </style>
 </head>
         
@@ -177,7 +193,12 @@
 
     <section class="gallery" id="collection">
         <h2>Our Jewellery Collection</h2>
-
+        <div class="filter-buttons">
+            <button onclick="filterProducts('all')">All</button>
+            <button onclick="filterProducts('bridal')">Bridal</button>
+            <button onclick="filterProducts('bangles')">Bangles</button>
+            <button onclick="filterProducts('earrings')">Earrings</button>
+        </div>
         <div class="products">
 
             <div class="card">
@@ -187,6 +208,7 @@
                 <a href="https://wa.me/919468548762?text=I%20am%20interested%20in%20Wedding%20Necklace%20Set" target="_blank" class="product-btn">
                     Enquire Now
                 </a>
+            <div class="card bridal"></div>  
             </div>
 
             <div class="card">
@@ -196,6 +218,7 @@
                 <a href="https://wa.me/919468548762?text=I%20am%20interested%20in%20Designer%20Bangles" target="_blank" class="product-btn">
                     Enquire Now
                 </a>
+            <div class="card bangles"></div>   
             </div>
 
             <div class="card">
@@ -205,6 +228,7 @@
                 <a href="https://wa.me/919468548762?text=I%20am%20interested%20in%20Gold%20Earrings" target="_blank" class="product-btn">
                     Enquire Now
                 </a>
+            <div class="card earrings"></div>
             </div>
 
         </div>
@@ -265,6 +289,23 @@
 
     changeBackground();
     setInterval(changeBackground, 4000);
+    </script>
+    <script>
+    function filterProducts(category) {
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            if (category === 'all') {
+               card.style.display = 'block';
+            } else {
+               if (card.classList.contains(category)) {
+                   card.style.display = 'block';
+               } else {
+                   card.style.display = 'none';
+               }
+            }
+        });
+    }
     </script>
 </body>
 </html>
