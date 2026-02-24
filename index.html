@@ -42,7 +42,6 @@
         .hero {
             height: 90vh;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                        url('https://images.unsplash.com/photo-1601121141303-4b0d3f4c8c63');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -140,9 +139,28 @@
             text-decoration: none;
             font-weight: bold;
         }
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+
     </style>
 </head>
-
+        
 <body>
 
     <nav>
@@ -216,6 +234,38 @@
     <a href="https://wa.me/919468548762" target="_blank" class="whatsapp">
         Chat Now
     </a>
+    <div id="lightbox" onclick="closeImage()" style="display:none;">
+        <img id="lightbox-img">
+    </div>
+    <script>
+    function openImage(src) {
+        document.getElementById("lightbox").style.display = "flex";
+        document.getElementById("lightbox-img").src = src;
+    }
 
+    function closeImage() {
+        document.getElementById("lightbox").style.display = "none";
+    }
+    </script>
+    <script>
+    const hero = document.querySelector(".hero");
+
+    const images = [
+       "https://images.unsplash.com/photo-1601121141303-4b0d3f4c8c63",
+       "https://images.unsplash.com/photo-1617038260897-41a1f14a9b6c",
+       "https://images.unsplash.com/photo-1603974372039-adc49044b6bd"
+    ];
+
+    let index = 0;
+
+    function changeBackground() {
+      hero.style.backgroundImage = 
+        "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('" + images[index] + "')";
+      index = (index + 1) % images.length;
+    }
+
+    changeBackground();
+    setInterval(changeBackground, 4000);
+    </script>
 </body>
 </html>
